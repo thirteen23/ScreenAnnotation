@@ -9,8 +9,9 @@
 import Cocoa
 
 class ViewController: NSViewController {
-  var currentLineWeight: CGFloat = 10
-  var currentLineColor: NSColor = .red
+  let lineWeight: CGFloat = 10
+  let strokeColor: NSColor = .red
+
   var currentPath: NSBezierPath?
   var currentShape: CAShapeLayer?
 
@@ -52,11 +53,12 @@ class ViewController: NSViewController {
     currentPath = NSBezierPath()
     currentShape = CAShapeLayer()
 
-    currentShape?.lineWidth = currentLineWeight
+    currentShape?.lineWidth = lineWeight
+    currentShape?.strokeColor = strokeColor.cgColor
+    currentShape?.fillColor = NSColor.clear.cgColor
+
     currentShape?.lineJoin = kCALineJoinRound
     currentShape?.lineCap = kCALineCapRound
-    currentShape?.strokeColor = currentLineColor.cgColor
-    currentShape?.fillColor = NSColor.clear.cgColor
 
     currentPath?.move(to: point)
     currentPath?.line(to: point)
@@ -67,16 +69,18 @@ class ViewController: NSViewController {
   }
 
   func continueDrawing(at point: NSPoint) {
-    if currentShape != nil && currentPath != nil {
-      currentPath?.line(to: point)
-      currentShape?.path = currentPath?.cgPath
+    currentPath?.line(to: point)
+
+    if let shape = currentShape {
+      shape.path = currentPath?.cgPath
     }
   }
 
   func endDrawing(at point: NSPoint) {
-    if currentShape != nil && currentPath != nil {
-      currentPath?.line(to: point)
-      currentShape?.path = currentPath?.cgPath
+    currentPath?.line(to: point)
+
+    if let shape = currentShape {
+      shape.path = currentPath?.cgPath
     }
 
     currentPath = nil
