@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A8CCB7211FB0C6B4002AAE0E /* CurrentColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CCB7201FB0C6B4002AAE0E /* CurrentColorView.swift */; };
 		BB468D251F5FA43E00C67BDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB468D241F5FA43E00C67BDB /* AppDelegate.swift */; };
 		BB468D271F5FA43E00C67BDB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB468D261F5FA43E00C67BDB /* ViewController.swift */; };
 		BB468D291F5FA43E00C67BDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB468D281F5FA43E00C67BDB /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A8CCB7201FB0C6B4002AAE0E /* CurrentColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentColorView.swift; sourceTree = "<group>"; };
 		BB468D211F5FA43E00C67BDB /* ScreenAnnotation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenAnnotation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB468D241F5FA43E00C67BDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB468D261F5FA43E00C67BDB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 				BB468D241F5FA43E00C67BDB /* AppDelegate.swift */,
 				BB468D261F5FA43E00C67BDB /* ViewController.swift */,
 				BB5904881F608F8400D4595C /* NSBezierPath+CGPath.swift */,
+				A8CCB7201FB0C6B4002AAE0E /* CurrentColorView.swift */,
 				BB468D281F5FA43E00C67BDB /* Assets.xcassets */,
 				BB468D2A1F5FA43E00C67BDB /* Main.storyboard */,
 				BB468D341F5FABF900C67BDB /* ClearWindow.swift */,
@@ -143,6 +146,7 @@
 				BB5904891F608F8400D4595C /* NSBezierPath+CGPath.swift in Sources */,
 				BB468D271F5FA43E00C67BDB /* ViewController.swift in Sources */,
 				BB468D251F5FA43E00C67BDB /* AppDelegate.swift in Sources */,
+				A8CCB7211FB0C6B4002AAE0E /* CurrentColorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

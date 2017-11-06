@@ -14,6 +14,7 @@ class ViewController: NSViewController {
 
   var currentPath: NSBezierPath?
   var currentShape: CAShapeLayer?
+  var currentColor: CurrentColorView!
 
   private let offText = "Disable Drawing"
   private let onText = "Enable Drawing"
@@ -24,12 +25,16 @@ class ViewController: NSViewController {
 
   @IBAction func clearButtonClicked(_ sender: Any) {
     view.layer?.sublayers?.removeAll()
+    
+    view.addSubview(currentColor)
   }
 
   @IBAction func toggleButtonClicked(_ sender: Any) {
     view.window!.ignoresMouseEvents = !view.window!.ignoresMouseEvents
 
     toggleButton.title = view.window!.ignoresMouseEvents ? onText : offText
+    
+    currentColor.alphaValue = 0
   }
 
   let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
@@ -41,6 +46,14 @@ class ViewController: NSViewController {
     statusItem.image = icon
 
     toggleButton.title = offText
+    
+    currentColor = CurrentColorView.newInstance()
+    
+    view.addSubview(currentColor)
+    
+    let options = [NSTrackingArea.Options.mouseMoved, NSTrackingArea.Options.activeInKeyWindow] as NSTrackingArea.Options
+    let trackingArea = NSTrackingArea(rect:view.frame,options:options,owner:self,userInfo:nil)
+    view.addTrackingArea(trackingArea)
   }
 
   override func viewDidLoad() {
@@ -66,6 +79,9 @@ class ViewController: NSViewController {
     currentShape?.path = currentPath?.cgPath
 
     view.layer?.addSublayer(currentShape!)
+    
+    currentColor.removeFromSuperview()
+    view.addSubview(currentColor)
   }
 
   func continueDrawing(at point: NSPoint) {
@@ -74,6 +90,8 @@ class ViewController: NSViewController {
     if let shape = currentShape {
       shape.path = currentPath?.cgPath
     }
+    
+    updateCurrentColorLocation(point: point)
   }
 
   func endDrawing(at point: NSPoint) {
@@ -85,6 +103,18 @@ class ViewController: NSViewController {
 
     currentPath = nil
     currentShape = nil
+    
+    updateCurrentColorLocation(point: point)
+  }
+    
+  func updateCurrentColorLocation(point: NSPoint) {
+    currentColor.frame.origin.x = point.x - 20
+    currentColor.frame.origin.y = point.y - 20
+    
+    currentColor.alphaValue = 1
+  }
+  
+  override func mouseMoved(with event: NSEvent) {
+    updateCurrentColorLocation(point: event.locationInWindow)
   }
 }
-
